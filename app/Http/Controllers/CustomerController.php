@@ -38,12 +38,11 @@ class CustomerController extends Controller
         $method = "GET";
         $zipcode = str_replace('-','',$this->format($request->input('zipcode')));
         $url = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' . $zipcode;
-        $options = [];
 
         $client = new Client();
 
         try {
-            $response = $client->request($method, $url, $options);
+            $response = $client->request($method, $url);
             $body = $response->getBody();
             $customer = json_decode($body, false);
             $results = $customer->results[0];
