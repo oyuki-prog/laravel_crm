@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+    private function format($str)
+    {
+        $replaced = str_replace('ー', '−', $str);
+        $converted = mb_convert_kana($replaced, "a");
+        $format = str_replace('-', '', $converted);
+
+        return $format;
+    }
     /**
      * Display a listing of the resource.
      *
