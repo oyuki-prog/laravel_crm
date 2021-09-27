@@ -28,11 +28,11 @@
         </div>
         <div>
             <label for="zipcode">郵便番号</label>
-            <input type="text" name="zipcode" id="zipcode" readonly value="{{ old('zipcode', $zipcode) }}">
+            <input type="text" name="zipcode" id="zipcode" readonly value="{{ $zipcode }}">
         </div>
         <div>
             <label for="address">住所</label>
-            <textarea name="address" id="address" cols="30" rows="10" required>{{ $address }}</textarea>
+            <textarea name="address" id="address" cols="30" rows="10" required>{{ old('address', $address) }}</textarea>
         </div>
         <div>
             <label for="phone">電話番号</label>

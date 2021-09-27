@@ -36,7 +36,7 @@ class CustomerController extends Controller
     public function create(Request $request)
     {
         $method = "GET";
-        $zipcode = str_replace('-','',$this->format($request->input('zipcode')));
+        $zipcode = str_replace('-','',$this->format($request->zipcode));
         $url = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' . $zipcode;
 
         $client = new Client();
@@ -44,8 +44,8 @@ class CustomerController extends Controller
         try {
             $response = $client->request($method, $url);
             $body = $response->getBody();
-            $customer = json_decode($body, false);
-            $results = $customer->results[0];
+            $response = json_decode($body, false);
+            $results = $response->results[0];
             $address = $results->address1 . $results->address2 . $results->address3;
         } catch (\Throwable $th) {
             return back()->withErrors(['error' => '正しい郵便番号ではありません']);
