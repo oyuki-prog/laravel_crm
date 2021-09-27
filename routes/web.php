@@ -22,4 +22,3 @@ Route::get('/customers/zipcode', [CustomerController::class, 'zipcode'])
     ->name('customers.zipcode');
 
 Route::resource('customers', CustomerController::class);
-

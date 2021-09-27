@@ -28,7 +28,8 @@ class CustomerController extends Controller
     public function create(Request $request)
     {
         $method = "GET";
-        $zipcode = $request->input('zipcode');
+        $str = mb_convert_kana($request->input('zipcode'), "a");
+        $zipcode = str_replace('-', '', $str);
         $url = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' . $zipcode;
         $options = [];
 

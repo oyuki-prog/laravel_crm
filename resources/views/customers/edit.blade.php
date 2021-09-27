@@ -2,16 +2,15 @@
 
 @section('title', '編集画面')
 
-
 @section('content')
     <h1>編集画面</h1>
-        @if ($errors->any())
+    @if ($errors->any())
         <div class="error">
             <p>
                 <b>{{ count($errors) }}件のエラーがあります。</b>
             </p>
             <ul>
-                @foreach($errors->all() as $error)
+                @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
@@ -34,7 +33,7 @@
         </div>
         <div>
             <label for="address">住所</label>
-            <textarea name="address" id="address" cols="30" rows="10">{{ old('address',$customer->address) }}</textarea>
+            <textarea name="address" id="address" cols="30" rows="10">{{ old('address', $customer->address) }}</textarea>
         </div>
         <div>
             <label for="phone">電話番号</label>

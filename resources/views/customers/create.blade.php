@@ -2,7 +2,6 @@
 
 @section('title', '新規登録画面')
 
-
 @section('content')
     <h1>新規登録画面</h1>
     @if ($errors->any())
@@ -11,7 +10,7 @@
                 <b>{{ count($errors) }}件のエラーがあります。</b>
             </p>
             <ul>
-                @foreach($errors->all() as $error)
+                @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
@@ -29,7 +28,7 @@
         </div>
         <div>
             <label for="zipcode">郵便番号</label>
-            <input type="text" name="zipcode" id="zipcode" required value="{{ old('zipcode', $zipcode) }}">
+            <input type="text" name="zipcode" id="zipcode" readonly value="{{ old('zipcode', $zipcode) }}">
         </div>
         <div>
             <label for="address">住所</label>
