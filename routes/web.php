@@ -21,4 +21,7 @@ Route::get('/', function () {
 Route::get('/customers/zipcode', [CustomerController::class, 'zipcode'])
     ->name('customers.zipcode');
 
+Route::post('/customers/create', [CustomerController::class, 'create'])
+    ->name('customers.post');
+
 Route::resource('customers', CustomerController::class);
