@@ -11,9 +11,9 @@ class CustomerController extends Controller
 {
     private function format($str)
     {
-        $replaced = str_replace('ー', '−', $str);
-        $converted = mb_convert_kana($replaced, "a");
-        $format = str_replace('-', '', $converted);
+        $replace1 = str_replace('ー', '−', $str);
+        $replace2 = str_replace('―', '−', $replace1);
+        $format = mb_convert_kana($replace2, "a");
 
         return $format;
     }
@@ -36,9 +36,7 @@ class CustomerController extends Controller
     public function create(Request $request)
     {
         $method = "GET";
-        $format = str_replace('ー', '−', $request->input('zipcode'));
-        $str = mb_convert_kana($format, "a");
-        $zipcode = str_replace('-', '', $str);
+        $zipcode = str_replace('-','',$this->format($request->input('zipcode')));
         $url = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' . $zipcode;
         $options = [];
 
@@ -72,6 +70,8 @@ class CustomerController extends Controller
     {
         $customer = new Customer();
         $customer->fill($request->all());
+        $customer->address = $this->format($request->address);
+        $customer->phone = $this->format($request->phone);
         $customer->save();
         return redirect()->route('customers.index');
     }
@@ -108,6 +108,8 @@ class CustomerController extends Controller
     public function update(CustomerRequest $request, Customer $customer)
     {
         $customer->fill($request->all());
+        $customer->address = $this->format($request->address);
+        $customer->phone = $this->format($request->phone);
         $customer->save();
         return redirect()->route('customers.index');
     }
