@@ -49,7 +49,7 @@ class CustomerController extends Controller
             $results = $customer->results[0];
             $address = $results->address1 . $results->address2 . $results->address3;
         } catch (\Throwable $th) {
-            return back();
+            return back()->withErrors(['error' => '正しい郵便番号ではありません']);
         }
 
         return view('customers.create', compact('zipcode', 'address'));
