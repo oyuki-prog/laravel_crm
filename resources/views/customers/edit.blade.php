@@ -25,7 +25,7 @@
         </div>
         <div>
             <label for="email">メールアドレス</label>
-            <input type="text" name="email" id="email" value="{{ old('email', $customer->email) }}">
+            <input type="email" name="email" id="email" value="{{ old('email', $customer->email) }}">
         </div>
         <div>
             <label for="zipcode">郵便番号</label>
