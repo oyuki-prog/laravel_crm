@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/customers/zipcode', [CustomerController::class, 'zipcode'])
+    ->name('customers.zipcode');
+
+Route::post('/customers/create', [CustomerController::class, 'create'])
+    ->name('customers.post');
+
+Route::resource('customers', CustomerController::class);
